@@ -1,4 +1,4 @@
-package com.example.domashka_2_5.exception;
+package com.example.domashka_2_7.Exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

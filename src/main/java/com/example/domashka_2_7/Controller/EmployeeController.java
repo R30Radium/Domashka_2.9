@@ -1,18 +1,15 @@
-package com.example.domashka_2_5.controller;
+package com.example.domashka_2_7.Controller;
 
-import com.example.domashka_2_5.model.Employee;
-import com.example.domashka_2_5.service.EmployeeService;
-import org.springframework.http.MediaType;
+import com.example.domashka_2_7.model.Employee;
+import com.example.domashka_2_7.service.EmployeeService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.print.attribute.standard.Media;
-import java.util.List;
+import org.springframework.web.util.pattern.PathPattern;
+import java.util.Collection;
 
 @RestController
-@RequestMapping("/employee")
+@RequestMapping(path = "/employee")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
@@ -21,27 +18,23 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @GetMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Employee add(@RequestParam("firstName")String name, @RequestParam("lastName")String surname){
-        return employeeService.add(name, surname);
+    @GetMapping(path = "/add")
+    public Employee addEmployee(String firstName, String lastName, int department, int workersSalary) {
+        return employeeService.addEmployee(firstName, lastName, department, workersSalary);
     }
 
-    @GetMapping("/remove")
-    public Employee remove(@RequestParam("firstName") String name, @RequestParam("lastName") String surname) {
-        return employeeService.remove(name, surname);
+    @GetMapping(path = "/remove")
+    public Employee removeEmployee(String firstName, String lastName, int department, int workersSalary) {
+        return employeeService.deleteEmployee(firstName, lastName, department, workersSalary);
     }
 
-    @GetMapping("find")
-    public Employee find(@RequestParam("firstName") String name, @RequestParam("lastName") String surname) {
-        return employeeService.find(name, surname);
+    @GetMapping(path = "/find")
+    public Employee findEmployee(String firstName, String lastName, int department, int workersSalary) {
+        return employeeService.getEmployee(firstName, lastName, department, workersSalary);
     }
 
-    @GetMapping()
-    public List<Employee> getAll() {
-        return employeeService.getAll();
+    @GetMapping
+    public Collection<Employee> allEmployee() {
+        return employeeService.findAll();
     }
-
-
-
-
 }

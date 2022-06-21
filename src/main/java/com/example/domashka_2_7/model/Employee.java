@@ -1,37 +1,46 @@
-package com.example.domashka_2_5.model;
+package com.example.domashka_2_7.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Objects;
-
+import org.springframework.web.util.pattern.PathPattern;
 public class Employee {
 
+    private final String firstName;
+    private final String lastName;
+    private final int department;
+    private final int workersSalary;
 
-    @JsonProperty("firstName")
-    private final String name;
-    @JsonProperty("lastName")
-    private final String surname;
-
-    public Employee(String name, String surname) {
-        this.name = name;
-        this.surname = surname;
+    public Employee(String firstName, String lastName, int department, int workersSalary) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.department = department;
+        this.workersSalary = workersSalary;
     }
 
-    public String getName() {
-        return name;
+
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Employee employee = (Employee) o;
-        return Objects.equals(name, employee.name) && Objects.equals(surname, employee.surname);
+    public int getDepartment() {
+        return department;
     }
 
+    public int getWorkersSalary() {
+        return workersSalary;
+    }
+
+    @Override
     public String toString() {
-        return String.format("ФИ: %s %s", surname, name);
+        return "Employee{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", department=" + department +
+                ", workersSalary=" + workersSalary +
+                '}';
     }
 }
