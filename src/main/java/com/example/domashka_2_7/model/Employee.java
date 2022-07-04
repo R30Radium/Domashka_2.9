@@ -1,7 +1,10 @@
 package com.example.domashka_2_7.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import static org.apache.commons.lang3.StringUtils.isAlpha;
 
 import java.util.Objects;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.util.pattern.PathPattern;
 public class Employee {
 
@@ -11,8 +14,8 @@ public class Employee {
     private final int workersSalary;
 
     public Employee(String firstName, String lastName, int department, int workersSalary) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstName = StringUtils.capitalize(firstName.toLowerCase());
+        this.lastName = StringUtils.capitalize(lastName.toLowerCase());
         this.department = department;
         this.workersSalary = workersSalary;
     }

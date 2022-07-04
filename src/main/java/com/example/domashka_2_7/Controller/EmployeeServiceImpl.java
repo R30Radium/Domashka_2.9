@@ -1,6 +1,8 @@
 package com.example.domashka_2_7.Controller;
 
 import com.example.domashka_2_7.Exception.EmployeeAlreadyAddedException;
+import com.example.domashka_2_7.Exception.EmployeeIncorrectDataException;
+import com.example.domashka_2_7.Exception.EmployeeIncorrectDataException;
 import com.example.domashka_2_7.Exception.EmployeeNotFoundException;
 import com.example.domashka_2_7.Exception.EmployeeStorageIsFullException;
 import com.example.domashka_2_7.model.Employee;
@@ -10,6 +12,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.pattern.PathPattern;
 import java.util.*;
+
+import static org.apache.commons.lang3.StringUtils.isAlpha;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -39,6 +43,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         throw new EmployeeStorageIsFullException();
     }
 
+    private void validInput(String firstname, String lastname) {
+        if (!isAlpha(firstname) && isAlpha(lastname)) {
+            throw new EmployeeIncorrectDataException();
+        }
+    }
 
     @Override
     public Employee deleteEmployee(String firstName, String lastName, int department, int workersSalary) {

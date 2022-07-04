@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import org.springframework.web.util.pattern.PathPattern;
+import org.apache.commons.lang3.StringUtils;
+
+import static org.apache.commons.lang3.StringUtils.*;
 
 
 @Service
@@ -43,6 +46,7 @@ public class DepartmentServiceImlp {
                 .max(Comparator.comparingInt(Employee::getWorkersSalary))
                 .orElseThrow(() -> new EmployeeNotFoundException());
     }
+
 
     public List<Employee> departmentWorkers(int department) {
 
